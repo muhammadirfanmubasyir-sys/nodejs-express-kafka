@@ -2,7 +2,7 @@ import { Kafka } from "kafkajs";
 
 const kafka = new Kafka({
   clientId: "analytic-service",
-  brokers: ["localhost:9092"],
+  brokers: ["localhost:9092","localhost:9095","localhost:9096"],
 });
 
 const consumer = kafka.consumer({ groupId: "analytic-service" });

@@ -1,21 +1,4 @@
 services:
-  postgres-auth:
-    container_name: postgres-auth
-    image: postgres
-    pull_policy: missing
-    environment:
-      POSTGRES_DB: db-auth-service
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      PG_DATA: /data/postgres
-    volumes:
-      - ./postgres-auth:/data/postgres
-      - ./init-database.sql:/docker-entrypoint-initdb.d/init-database.sql
-    ports:
-      - "5434:5434"
-    command: -p 5434
-    restart: always
-  
   broker:
     image: apache/kafka:latest
     hostname: broker

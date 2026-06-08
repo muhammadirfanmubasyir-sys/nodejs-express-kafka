@@ -1,8 +1,9 @@
 import { Kafka } from "kafkajs";
+import crypto from "crypto";
 
 const kafka = new Kafka({
   clientId: "email-service",
-  brokers: ["localhost:9094"],
+  brokers: ["localhost:9092","localhost:9095","localhost:9096"],
 });
 
 const producer = kafka.producer();
@@ -23,8 +24,8 @@ const run = async () => {
         const { userId, orderId } = JSON.parse(value);
 
         // TODO: Send email to the user
-        const dummyEmailId = "091584203985";
-        console.log(`Email consumer: Email sent to user id ${userId}`);
+        const dummyEmailId = crypto.randomUUID();
+        console.log(`Email consumer: Email ${dummyEmailId} sent to user id ${userId}`);
 
         await producer.send({
           topic: "email-successful",

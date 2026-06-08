@@ -1,8 +1,11 @@
 import { Kafka } from "kafkajs";
+import crypto from "crypto";
 
+// Generate a random v4 UUID
+ 
 const kafka = new Kafka({
   clientId: "order-service",
-  brokers: ["localhost:9094"],
+  brokers: ["localhost:9092","localhost:9095","localhost:9096"],
 });
 
 const producer = kafka.producer();
@@ -23,8 +26,8 @@ const run = async () => {
         const { userId, cart } = JSON.parse(value);
 
         // TODO: Create order on DB
-        const dummyOrderId = "123456789";
-        console.log(`Order consumer: Order created for user id: ${userId}`);
+        const dummyOrderId = crypto.randomUUID();
+        console.log(`Order consumer: Order ${dummyOrderId} created for user id: ${userId}`);
 
         await producer.send({
           topic: "order-successful",
