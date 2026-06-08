@@ -95,6 +95,6 @@ services:
       - kafka-broker-2
       - kafka-broker-3
     environment:
-      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_NAME: irfan-cluster
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-broker-1:29092,kafka-broker-2:29095,kafka-broker-3:29096
       DYNAMIC_CONFIG_ENABLED: 'true'  
